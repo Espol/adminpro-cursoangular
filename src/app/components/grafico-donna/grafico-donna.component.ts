@@ -11,7 +11,7 @@ export class GraficoDonnaComponent implements OnInit {
 
   @Input() chartLabels: Label[] = [];
   @Input() chartData: MultiDataSet = [];
-  @Input() chartType: ChartType = '';
+  @Input() chartType: ChartType = 'doughnut';
 
   constructor() { }
 

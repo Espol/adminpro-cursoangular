@@ -12,6 +12,7 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 
 import { ChartsModule } from 'ng2-charts';
 import { GraficoDonnaComponent } from '../components/grafico-donna/grafico-donna.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 
@@ -22,7 +23,8 @@ import { GraficoDonnaComponent } from '../components/grafico-donna/grafico-donna
         ProgressComponent,
         Graficas1Component,
         IncrementadorComponent,
-        GraficoDonnaComponent
+        GraficoDonnaComponent,
+        AccountSettingsComponent
     ],
     exports: [
         PagesComponent,
