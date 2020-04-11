@@ -11,15 +11,12 @@ export class LoginGuardGuard implements CanActivate {
   }
   // tslint:disable-next-line:one-line
   canActivate( ){
-    
-    if( this._usuarioService.estaLogueado() ) {
-      console.log('PASO EL GUARD');
+
+    if ( this._usuarioService.estaLogueado() ) {
       return true;
     } else {
-      console.log('Bloqueado por Guard');
       this.router.navigate(['/login']);
       return false;
     }
-    
   }
 }
