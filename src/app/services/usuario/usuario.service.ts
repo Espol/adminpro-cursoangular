@@ -25,6 +25,18 @@ export class UsuarioService {
     this.cargarStorage();
   }
 
+  get _id(): string {
+    return this.usuario._id || '';
+  }
+
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    };
+  }
+
   guardarStorage( id: string, token: string, usuario: Usuario ) {
     localStorage.setItem('id', id );
     localStorage.setItem('token', token );
@@ -100,10 +112,10 @@ cargarStorage() {
   }
 
   actualizarUsuario( usuario: Usuario ) {
-    let url = URL_SERVICIOS + '/usuario/' + usuario._id + '?token=' + this.token;
+    const url = URL_SERVICIOS + '/usuario/' + usuario._id + '?token=' + this.token;
     return this.http.put( url, usuario ).pipe(
       map( (resp: any) => {
-        let userDB: Usuario = resp.usuario;
+        const userDB: Usuario = resp.usuario;
         this.guardarStorage( userDB._id, this.token, userDB);
         swal('Usuario Actualizado', usuario.nombre, 'success' );
         return true;
@@ -118,5 +130,25 @@ cargarStorage() {
       this.guardarStorage( id, this.token, this.usuario);
       swal('Imagen Actualizada', this.usuario.nombre, 'success');
     } ).catch( (resp: any) => {console.log(resp); } );
+  }
+
+  cargarUsuarios( desde: number = 0 ) {
+    const url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    return this.http.get( url ).pipe(
+      map( (resp: any) => {
+        const usuarios = resp.usuarios.map(
+          user => new Usuario(user.nombre, user.email, '', user.img, user.role, user.google, user._id) );
+        return {
+          total: resp.total,
+          usuarios : usuarios
+        };
+      })
+    );
+
+  }
+
+  eliminarUsuario ( usuario: Usuario ) {
+    const url = URL_SERVICIOS + '/usuario/' + usuario._id + '?token=' + this.token;
+    return this.http.delete( url );
   }
 }

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Services
 import { ServiceModule } from './services/service.module';
+import { ModalImageComponent } from './components/modal-image/modal-image.component';
 
 @NgModule({
   declarations: [

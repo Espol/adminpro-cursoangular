@@ -17,8 +17,8 @@ export class SubirArchivoService {
       let formData = new FormData();
       let xhr = new XMLHttpRequest(); // AJAX
 
-      // el primer parametro es el nombre que se le pone 
-      // en el body del servicio rest ver en el postman 
+      // el primer parametro es el nombre que se le pone
+      // en el body del servicio rest ver en el postman
       // donde se va la imagen.
       formData.append( 'imagen', archivo, archivo.name );
       xhr.onreadystatechange = function() {
@@ -37,4 +37,6 @@ export class SubirArchivoService {
 
     } );
   }
+
+
 }
